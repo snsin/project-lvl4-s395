@@ -1,0 +1,81 @@
+{
+  "name": "task-manager-snsin",
+  "version": "0.0.1",
+  "description": "Simple task manager. Training project level4",
+  "main": "dist/index.js",
+  "bin": {
+    "page-loader": "dist/bin/task-manager.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "coverage": "jest --coverage",
+    "test": "jest",
+    "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "taskmanager",
+    "learning",
+    "pet-project"
+  ],
+  "author": "Sergey Sinitsyn",
+  "license": "ISC",
+  "jest": {
+    "testEnvironment": "node",
+    "coverageReporters": [
+      "lcov",
+      "text"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/build/",
+      "<rootDir>/node_modules/",
+      "<rootDir>/__tests__/__fixtures__/"
+    ]
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.0.0",
+    "eslint": "^5.10.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^22.1.2",
+    "jest": "^24.0.0",
+    "jest-supertest-matchers": "0.0.2",
+    "nodemon": "^1.18.10",
+    "supertest": "^3.4.2"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "@babel/plugin-transform-runtime": "^7.2.0",
+    "@babel/polyfill": "7.2.5",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-flash-simple": "0.0.3",
+    "koa-generic-session": "^2.0.1",
+    "koa-logger": "^3.2.0",
+    "koa-methodoverride": "^2.0.0",
+    "koa-pug": "^3.0.0-2",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "koa-webpack": "^5.2.1",
+    "lodash": "^4.17.11",
+    "webpack": "^4.29.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snsin/project-lvl4-s395.git"
+  },
+  "bugs": {
+    "url": "https://github.com/snsin/project-lvl4-s395/issues"
+  },
+  "homepage": "https://github.com/snsin/project-lvl4-s395#readme"
+}
