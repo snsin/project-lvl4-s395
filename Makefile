@@ -2,7 +2,7 @@ install-deps:
 	npm install
 
 start:
-	npx babel-node -- src/bin/gendiff
+	npx babel-node -- index.js
 
 publish:
 	npm publish
