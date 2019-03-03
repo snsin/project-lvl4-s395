@@ -3,6 +3,7 @@ import Pug from 'koa-pug';
 import path from 'path';
 
 const app = new Koa();
+const PORT = process.env.PORT || 3000;
 
 // response
 app.use((ctx) => {
@@ -23,4 +24,4 @@ const pug = new Pug({
   ], */
 });
 pug.use(app);
-app.listen(3000);
+app.listen(PORT, () => console.log(`Listening on ${PORT}`));
