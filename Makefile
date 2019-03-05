@@ -2,7 +2,7 @@ install-deps:
 	npm install
 
 start:
-	npx babel-node -- index.js
+	npm run start
 
 publish:
 	npm publish
