@@ -9,14 +9,10 @@ import addRoutes from './routes';
 const app = new Koa();
 const PORT = process.env.PORT || 3000;
 
-// response
+
 const { errInform, logger } = middlevares;
 app.use(errInform);
 app.use(logger(container));
-/* app.use((ctx) => {
-  // ctx.body = 'Hello Koa';
-  ctx.render('welcome/index');
-}); */
 const router = new Router();
 addRoutes(router, container);
 app.use(router.allowedMethods());
@@ -28,7 +24,7 @@ const pug = new Pug({
   pretty: true,
   compileDebug: true,
   locals: [],
-  basedir: path.join(__dirname, 'views'),
+  // basedir: path.join(__dirname, 'views'),
   /* helperPath: [
     { _ },
     { urlFor: (...args) => router.url(...args) },
@@ -36,4 +32,3 @@ const pug = new Pug({
 });
 pug.use(app);
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
-console.log('end');
