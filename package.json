@@ -10,7 +10,7 @@
     "dist"
   ],
   "scripts": {
-    "start": "DEBUG=* npx babel-node -- index.js",
+    "start": "DEBUG=task-manager npx babel-node -- index.js",
     "coverage": "jest --coverage",
     "test": "jest",
     "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
