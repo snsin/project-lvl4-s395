@@ -2,7 +2,7 @@ import Koa from 'koa';
 import Pug from 'koa-pug';
 import Router from 'koa-router';
 import path from 'path';
-import { errInform, logger } from './middlewares';
+import middlevares from './middlewares';
 import container from './container';
 import addRoutes from './routes';
 
@@ -10,6 +10,7 @@ const app = new Koa();
 const PORT = process.env.PORT || 3000;
 
 // response
+const { errInform, logger } = middlevares;
 app.use(errInform);
 app.use(logger(container));
 /* app.use((ctx) => {
