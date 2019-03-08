@@ -1,10 +1,13 @@
 import Koa from 'koa';
 import Pug from 'koa-pug';
 import Router from 'koa-router';
+import koaWebpack from 'koa-webpack';
+import serve from 'koa-static';
 import path from 'path';
 import container from './container';
 import middlevares from './middlewares';
 import addRoutes from './routes';
+import webpackConfig from './webpack.config';
 
 const app = new Koa();
 const PORT = process.env.PORT || 3000;
@@ -13,6 +16,13 @@ const PORT = process.env.PORT || 3000;
 const { errInform, logger } = middlevares;
 app.use(logger(container));
 app.use(errInform(container));
+app.use(serve(path.join(__dirname, 'public')));
+if (process.env.NODE_ENV !== 'production') {
+  koaWebpack({
+    config: webpackConfig,
+  }).then(m => app.use(m));
+}
+
 const router = new Router();
 addRoutes(router, container);
 app.use(router.allowedMethods());
