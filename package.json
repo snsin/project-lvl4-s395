@@ -14,6 +14,7 @@
     "coverage": "jest --coverage",
     "test": "jest",
     "build": "npx webpack -p --env production",
+    "heroku-postbuild": "npm run build",
     "prepublishOnly": "npm run build"
   },
   "keywords": [
