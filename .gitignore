@@ -2,6 +2,7 @@
 /coverage/
 /.vscode/
 /.idea/
+/public/
 *.swp
 dist
 .env
