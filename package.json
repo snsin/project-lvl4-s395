@@ -10,7 +10,7 @@
     "dist"
   ],
   "scripts": {
-    "start": "DEBUG=task-manager npx babel-node -- index.js",
+    "start": "npx gulp server",
     "coverage": "jest --coverage",
     "test": "jest",
     "build": "npx webpack -p --env production",
@@ -66,6 +66,8 @@
     "css-loader": "^2.1.1",
     "debug": "^4.1.1",
     "dotenv": "^6.2.0",
+    "gulp": "^4.0.0",
+    "gulp-cli": "^2.0.1",
     "jquery": "^3.3.1",
     "koa": "^2.7.0",
     "koa-bodyparser": "^4.2.1",
