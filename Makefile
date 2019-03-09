@@ -4,6 +4,9 @@ install-deps:
 start:
 	npm run start
 
+develop:
+	DEBUG="task-manager:*" npx nodemon --watch .  --ext '.js' --exec npx gulp server
+
 publish:
 	npm publish
 
