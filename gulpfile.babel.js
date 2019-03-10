@@ -3,7 +3,7 @@ import repl from 'repl';
 import container from './container';
 import getServer from '.';
 
-gulp.task('console', () => {
+gulp.task('console', async () => {
   const replServer = repl.start({
     prompt: 'Application console > ',
   });
