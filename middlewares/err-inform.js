@@ -11,7 +11,7 @@ export default ({ logger }) => async (ctx, next) => {
     await next();
   } catch (err) {
     err.status = err.statusCode || err.status || 500;
-    rollbar.log(err);
+    rollbar.error(err);
     logger(err);
     throw err;
   }
