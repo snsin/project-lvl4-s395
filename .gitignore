@@ -4,5 +4,6 @@
 /.idea/
 /public/
 *.swp
+*.sqlite
 dist
 .env
