@@ -14,11 +14,13 @@ module.exports = {
     },
     email: {
       type: Sequelize.STRING,
+      allowNull: false,
+      unique: true,
     },
     passwordDigest: {
       type: Sequelize.STRING,
     },
-    passworg: {
+    password: {
       type: Sequelize.VIRTUAL,
     },
     createdAt: {
