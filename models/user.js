@@ -7,7 +7,9 @@ export default (sequelize, DataTypes) => {
     email: {
       type: DataTypes.STRING,
       unique: true,
+      allowNull: false,
       validate: {
+        notEmpty: true,
         isEmail: true,
       },
     },
@@ -17,11 +19,11 @@ export default (sequelize, DataTypes) => {
         notEmpty: true,
       },
     },
-    passworg: {
+    password: {
       type: DataTypes.VIRTUAL,
       set(value) {
-        this.setDataValule('passwordDigest', encrypt(value));
-        this.setDataValule('password', value);
+        this.setDataValue('passwordDigest', encrypt(value));
+        this.setDataValue('password', value);
         return value;
       },
     },
