@@ -1,4 +1,4 @@
-import { encrypt } from '../lib/sequre';
+import { encrypt } from '../lib/secure';
 
 export default (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
@@ -7,7 +7,6 @@ export default (sequelize, DataTypes) => {
     email: {
       type: DataTypes.STRING,
       unique: true,
-      allowNull: false,
       validate: {
         notEmpty: true,
         isEmail: true,
