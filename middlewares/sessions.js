@@ -1,0 +1,7 @@
+export default async (ctx, next) => {
+  ctx.state = {
+    flash: ctx.flash,
+    isSignedIn: () => ctx.session.userId !== undefined,
+  };
+  await next();
+};
