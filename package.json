@@ -3,11 +3,8 @@
   "version": "0.0.1",
   "description": "Simple task manager. Training project level4",
   "main": "dist/index.js",
-  "bin": {
-    "page-loader": "dist/bin/task-manager.js"
-  },
   "files": [
-    "dist"
+    "public"
   ],
   "scripts": {
     "start": "npx gulp server",
@@ -71,6 +68,7 @@
     "gulp": "^4.0.0",
     "gulp-cli": "^2.0.1",
     "jquery": "^3.3.1",
+    "jquery-ujs": "^1.2.2",
     "koa": "^2.7.0",
     "koa-bodyparser": "^4.2.1",
     "koa-flash-simple": "0.0.3",
