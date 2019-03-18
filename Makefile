@@ -14,7 +14,7 @@ lint:
 	npx eslint .
 
 build:
-	rm -rf dist
+	rm -rf public
 	npm run build
 
 coverage:
