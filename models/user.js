@@ -26,6 +26,9 @@ export default (sequelize, DataTypes) => {
         this.setDataValue('password', value);
         return value;
       },
+      validate: {
+        len: [1, +Infinity],
+      },
     },
   }, {
     getterMethods: {
