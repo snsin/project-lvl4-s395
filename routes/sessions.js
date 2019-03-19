@@ -12,6 +12,7 @@ export default (router, { logger: log, secure: { verify } }) => {
       const user = await User.findOne({ where: { email } });
       if (verify(password, user.passwordDigest)) {
         ctx.session.userId = user.id;
+        ctx.session.userName = (user.fistName || user.lastName) ? user.fullName : user.email;
         ctx.redirect(router.url('root'));
         return;
       }
