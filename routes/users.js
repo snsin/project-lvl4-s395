@@ -11,10 +11,20 @@ export default (router, { logger: log }) => {
       const user = User.build();
       ctx.render('users/new', { f: buildFormObj(user) });
     })
+    .get('userSettings', '/users/settings', async (ctx) => {
+      const { session: { userId: id } } = ctx;
+      try {
+        const user = await User.findByPk(id);
+        ctx.render('users/edit', { f: buildFormObj(user) });
+      } catch (e) {
+        log(e);
+        ctx.flash.set('Something went wrong');
+        ctx.redirect(router.url('root'));
+      }
+    })
     .post('createUser', '/users', async (ctx) => {
       const { request: { body: { form } } } = ctx;
       const user = User.build(form);
-      log(form);
       try {
         await user.save();
         ctx.flash.set('User has been created');
@@ -25,8 +35,17 @@ export default (router, { logger: log }) => {
       }
     })
     .put('updateUser', '/users', async (ctx) => {
-      const { request: { body: form }, session: { userId: id } } = ctx;
+      const { request: { body: { form } }, session: { userId: id } } = ctx;
+      const { newPassword, confirmPassword } = form;
       let user;
+      if (newPassword !== confirmPassword) {
+        const err = { errors: [{ message: 'Passwords don\'t match', path: 'newPassword' }] };
+        ctx.render('users/edit', { f: buildFormObj(form, err) });
+        return;
+      }
+      if (newPassword) {
+        form.password = newPassword;
+      }
       try {
         user = await User.findByPk(id);
         await user.update(form);
@@ -34,16 +53,16 @@ export default (router, { logger: log }) => {
         ctx.redirect(router.url('root'));
       } catch (e) {
         log(e);
-        ctx.render('users/new', { f: buildFormObj(user || {}, e) });
+        ctx.render('users/edit', { f: buildFormObj(user || {}, e) });
       }
     })
     .del('deleteUser', '/users', async (ctx) => {
       const { session: { userId: id } } = ctx;
       try {
         const user = await User.findByPk(id);
-        const name = User.firstName;
         await user.destroy();
-        ctx.flash.set(`${name}, your account has been successfully deleted`);
+        ctx.session = {};
+        ctx.flash.set('Your account has been successfully deleted');
         ctx.redirect(router.url('root'));
       } catch (e) {
         log(e);
