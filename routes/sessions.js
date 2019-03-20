@@ -10,9 +10,9 @@ export default (router, { logger: log, secure: { verify } }) => {
     .post('logIn', '/session', async (ctx) => {
       const { email, password } = ctx.request.body.form;
       const user = await User.findOne({ where: { email } });
-      if (verify(password, user.passwordDigest)) {
+      if (user && verify(password, user.passwordDigest)) {
         ctx.session.userId = user.id;
-        ctx.session.userName = (user.fistName || user.lastName) ? user.fullName : user.email;
+        ctx.session.userName = (user.firstName || user.lastName) ? user.fullName : user.email;
         ctx.redirect(router.url('root'));
         return;
       }
