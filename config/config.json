@@ -9,6 +9,9 @@
   },
   "production": {
     "use_env_variable": "DATABASE_URL",
-    "dialect": "postgress"
+    "dialect": "postgress",
+    "dialectOptions": {
+      "ssl": true
+    }
   }
 }
