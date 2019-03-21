@@ -3,6 +3,7 @@
 /.vscode/
 /.idea/
 /public/
+migrations/*
 *.swp
 *.sqlite
 dist
