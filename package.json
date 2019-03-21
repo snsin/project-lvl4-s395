@@ -11,7 +11,8 @@
     "coverage": "jest --coverage",
     "test": "jest",
     "build": "npx webpack -p --env production",
-    "heroku-postbuild": "npm run build",
+    "migrate": "npx sequelize db:migrate",
+    "heroku-postbuild": "npm run migrate && npm run build",
     "prepublishOnly": "npm run build"
   },
   "keywords": [
