@@ -1,6 +1,6 @@
 {
   "name": "task-manager-snsin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Simple task manager. Training project level4",
   "main": "dist/index.js",
   "files": [
