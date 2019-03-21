@@ -17,8 +17,8 @@ export default (router, { logger: log, secure: { verify } }) => {
         return;
       }
       log('unsuccessful login attempt %o', ctx.request);
-      ctx.flash.set('email or password were wrong');
-      ctx.render('sessions/new', { f: buildFormObj({ email }) });
+      const err = { errors: [{ message: 'email or password were wrong', path: 'email' }] };
+      ctx.render('sessions/new', { f: buildFormObj({ email }, err) });
     })
     .delete('logOut', '/session', (ctx) => {
       ctx.session = {};
