@@ -1,0 +1,13 @@
+extends /layouts/application.pug
+
+block content
+  +formFor(f, { url: urlFor('updateUser'), method: 'put' })(class="mx-auto")
+    +input(f, 'email', { as: 'email'})
+    +input(f, 'firstName')
+    +input(f, 'lastName')
+    div.form-row.mx-auto
+      +input(f, 'newPassword', { as: 'password' })(class="w-50 pr-2")
+      +input(f, 'confirmPassword', { as: 'password' })(class="w-50 pl-2")
+    +button(f)(value="Update")
+    div.d-flex.flex-row-reverse
+      a.btn.btn-danger.p-2(href= urlFor('deleteUser') data-method= 'delete' data-confirm='Do you really want to delete your account?') Delete account

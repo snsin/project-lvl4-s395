@@ -1,0 +1,10 @@
+extends /layouts/application.pug
+
+block content
+  +formFor(f, { url: urlFor('createUser'), method: 'post' })
+    +input(f, 'email')
+    +input(f, 'firstName')
+    +input(f, 'lastName')
+    +input(f, 'password', { as: 'password' })
+    +button(f)
+
