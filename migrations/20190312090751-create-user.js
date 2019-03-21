@@ -20,9 +20,6 @@ module.exports = {
     passwordDigest: {
       type: Sequelize.STRING,
     },
-    password: {
-      type: Sequelize.VIRTUAL,
-    },
     createdAt: {
       allowNull: false,
       type: Sequelize.DATE,
