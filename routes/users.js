@@ -13,14 +13,8 @@ export default (router, { logger: log }) => {
     })
     .get('userSettings', '/users/settings', async (ctx) => {
       const { session: { userId: id } } = ctx;
-      try {
-        const user = await User.findByPk(id);
-        ctx.render('users/edit', { f: buildFormObj(user) });
-      } catch (e) {
-        log(e);
-        ctx.flash.set('Something went wrong');
-        ctx.redirect(router.url('root'));
-      }
+      const user = await User.findByPk(id);
+      ctx.render('users/edit', { f: buildFormObj(user) });
     })
     .post('createUser', '/users', async (ctx) => {
       const { request: { body: { form } } } = ctx;
@@ -34,7 +28,7 @@ export default (router, { logger: log }) => {
         ctx.render('users/new', { f: buildFormObj(user, e) });
       }
     })
-    .put('updateUser', '/users', async (ctx) => {
+    .patch('updateUser', '/users', async (ctx) => {
       const { request: { body: { form } }, session: { userId: id } } = ctx;
       const { newPassword, confirmPassword } = form;
       let user;
@@ -58,16 +52,10 @@ export default (router, { logger: log }) => {
     })
     .del('deleteUser', '/users', async (ctx) => {
       const { session: { userId: id } } = ctx;
-      try {
-        const user = await User.findByPk(id);
-        await user.destroy();
-        ctx.session = {};
-        ctx.flash.set('Your account has been successfully deleted');
-        ctx.redirect(router.url('root'));
-      } catch (e) {
-        log(e);
-        ctx.flash.set('Something went wrong');
-        ctx.render('welcome');
-      }
+      const user = await User.findByPk(id);
+      await user.destroy();
+      ctx.session = {};
+      ctx.flash.set('Your account has been successfully deleted');
+      ctx.redirect(router.url('root'));
     });
 };
