@@ -6,13 +6,14 @@ const rollbar = new Rollbar({
   captureUnhandledRejections: true,
 });
 
-export default ({ logger }) => async (ctx, next) => {
+export default ({ logger: log }) => async (ctx, next) => {
   try {
     await next();
   } catch (err) {
     err.status = err.statusCode || err.status || 500;
     rollbar.error(err);
-    logger(err);
-    throw err;
+    log(err);
+    ctx.flash.set('Something went wrong');
+    ctx.render('welcome');
   }
 };
