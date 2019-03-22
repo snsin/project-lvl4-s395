@@ -39,7 +39,7 @@ describe('tm-requests', () => {
   test('GET /error (bad request)', async () => {
     const res = await request.agent(server)
       .get('/error');
-    expect(res).toHaveHTTPStatus(400);
+    expect(res).toHaveHTTPStatus(200);
   });
 
   test('GET /users (users list)', async () => {
@@ -82,7 +82,7 @@ describe('tm-requests', () => {
 
     test('PUT /users (update logged user)', async () => {
       const res = await logged
-        .put('/users')
+        .patch('/users')
         .send({ form: { email: faker.internet.email() } });
       expect(res).toHaveHTTPStatus(302);
     });
@@ -95,7 +95,7 @@ describe('tm-requests', () => {
 
     test('UPDATE /users (try to update user when not logged)', async () => {
       const res = await request.agent(server)
-        .put('/users')
+        .patch('/users')
         .send({ form: { email: faker.internet.email() } });
       expect(res).toHaveHTTPStatus(200);
     });
