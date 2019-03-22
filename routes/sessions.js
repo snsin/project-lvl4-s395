@@ -13,6 +13,7 @@ export default (router, { logger: log, secure: { verify } }) => {
       if (user && verify(password, user.passwordDigest)) {
         ctx.session.userId = user.id;
         ctx.session.userName = (user.firstName || user.lastName) ? user.fullName : user.email;
+        ctx.flash.set('Seccessfully logged in');
         ctx.redirect(router.url('root'));
         return;
       }
